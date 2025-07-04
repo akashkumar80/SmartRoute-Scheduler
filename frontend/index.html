@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartRoute-Scheduler Prototype</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>SmartRoute-Scheduler</h1>
+  <form id="commute-form">
+    <label>From: <input type="text" id="source" required /></label><br/><br/>
+    <label>To: <input type="text" id="destination" required /></label><br/><br/>
+    <label>Preferred Arrival Time: <input type="time" id="arrivalTime" required /></label><br/><br/>
+    <button type="submit">Schedule Commute</button>
+  </form>
+  <div id="response"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "smartroute-scheduler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akashkumar80/SmartRoute-Scheduler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akashkumar80/SmartRoute-Scheduler/issues"
+  },
+  "homepage": "https://github.com/akashkumar80/SmartRoute-Scheduler#readme",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "googleapis": "^150.0.1",
+    "twilio": "^5.7.2"
+  }
+}

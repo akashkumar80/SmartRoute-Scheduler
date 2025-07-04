@@ -51,13 +51,13 @@
 ###  Running the Project
 
 Start the backend server:
-```bash
-node backend/server.js
-```
+    ```bash
+    node backend/server.js
+    
 
 Open your browser and navigate to:
-```bash
-http://localhost:3000
-```
+    ```bash
+    http://localhost:3000
+    
 
 Fill out the form with your commute details and submit. You should receive an SMS with your suggested departure time.

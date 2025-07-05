@@ -17,7 +17,7 @@
 
 - Backend: Node.js, Express.js
 - Frontend: HTML, JavaScript, CSS
-- APIs: Google Maps Directions API, Twilio SMS API
+- APIs: Maps Directions API, Twilio SMS API
 
 ---
 
@@ -26,9 +26,13 @@
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) installed
-- Google Cloud account with Google Maps Directions API enabled
+- OpenRouteService API Key (Signup now to get a api key for map data)
 - Twilio account with a phone number and verified user phone number
 
+- const CRONOFY_CLIENT_ID=process.env.CRONOFY_CLIENT_ID || "Your Googel Client ID"
+- const CRONOFY_CLIENT_SECRET= process.env.CRONOFY_CLIENT_SECRET || "Your Googel Client Secret"
+- const CRONOFY_REDIRECT_URI= process.env.CRONOFY_REDIRECT_URI || "your google redirect url"
+- const
 ### Installation
 
 1. Clone the repository:
@@ -42,22 +46,59 @@
 
 3. Create a .env file in the root directory with the following variables:
     ```bash
-    GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+    CRONOFY_CLIENT_ID= "Your Googel Client ID" (Optional)
+    CRONOFY_CLIENT_SECRET= "Your Googel Client Secret" (Optional)
+    CRONOFY_REDIRECT_URI= "your google redirect url" (Optional)
+    JWT_SECRET = "Your_Secret_Token"
+    MONGOOSE_URL = "Your Mongooes URL"
+    ORS_API_KEY= "OpenRouteService API KEY"
     TWILIO_ACCOUNT_SID=your_twilio_account_sid_here
     TWILIO_AUTH_TOKEN=your_twilio_auth_token_here
     TWILIO_PHONE_NUMBER=your_twilio_phone_number_here
     USER_PHONE_NUMBER=your_verified_phone_number_here
+    
 
 ###  Running the Project
 
 Start the backend server:
+
     ```bash
     node backend/server.js
-    
+    ```
 
 Open your browser and navigate to:
+
     ```bash
     http://localhost:3000
+    ```
     
 
 Fill out the form with your commute details and submit. You should receive an SMS with your suggested departure time.
+
+## Output Screen
+
+Below is the Screenshot of Project
+
+### Login
+![Login]()
+
+### Signup
+![Signup]()
+
+### Home
+![Home]()
+
+### DashBoard
+![Dashboard]()
+
+### DarkMode
+![DarkMode]("https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/DarkMode.png")
+
+### Language Translator
+![Language Translator]()
+
+### Voice Navigator
+![Voice Navigator]()
+
+### Instructions
+![Instruction]()

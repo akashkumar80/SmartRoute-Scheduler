@@ -11,7 +11,7 @@ const CRONOFY_REDIRECT_URI= process.env.CRONOFY_REDIRECT_URI || "your google red
 
 
 const JWT_SECRET = process.env.JWT_SECRET || "Your_Secret_Token"
-const MONGOOSE_URL = process.env.MONGOOSE_URL || "Your Mongooes URL"
+const MONGOOSE_URL = process.env.MONGOOSE_URL
 
 module.exports = {
     ORS_API_KEY,

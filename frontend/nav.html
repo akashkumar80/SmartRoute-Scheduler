@@ -5,6 +5,7 @@
     <a href="dashboard.html">📅 Dashboard</a>
   </div>
   <div class="nav-right">
+    <div id="google_translate_element"></div>
     <div class="dark-toggle">
       <label class="switch">
         <input type="checkbox" id="darkModeToggle">
@@ -16,6 +17,30 @@
 </nav>
 
 <style>
+  #google_translate_element {
+    margin-right: 10px;
+    font-size: 0.9rem;
+  }
+
+  .goog-te-gadget {
+    font-family: inherit !important;
+  }
+
+  .goog-te-combo {
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+  }
+
+  .goog-logo-link, .goog-te-gadget span {
+    display: none !important;
+  }
+
+  .goog-te-gadget {
+    color: transparent !important;
+  }
+
   .navbar {
     position: fixed;
     top: 0; left: 0; right: 0;

@@ -80,25 +80,25 @@ Fill out the form with your commute details and submit. You should receive an SM
 Below is the Screenshot of Project
 
 ### Login
-![Login]()
+![Login](https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/Login.png)
 
 ### Signup
-![Signup]()
+![Signup](https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/SignUp.png)
 
 ### Home
-![Home]()
+![Home](https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/Home.png)
 
 ### DashBoard
-![Dashboard]()
+![Dashboard](https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/Dashboard.png)
 
 ### DarkMode
-![DarkMode]("https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/DarkMode.png")
+![DarkMode](https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/DarkMode.png)
 
 ### Language Translator
-![Language Translator]()
+![Language Translator](https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/LanguageTranslator.png)
 
 ### Voice Navigator
-![Voice Navigator]()
+![Voice Navigator](https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/VoiceNavigator.png)
 
 ### Instructions
-![Instruction]()
+![Instruction](https://github.com/akashkumar80/SmartRoute-Scheduler/blob/main/Output_Screen/Guide.png)

@@ -46,7 +46,6 @@
     .then((html) => {
       document.getElementById("navbar").innerHTML = html;
 
-      // Attach dark mode logic after navbar loads
       const toggle = document.getElementById("darkModeToggle");
       const isDark = localStorage.getItem("darkMode") === "true";
 

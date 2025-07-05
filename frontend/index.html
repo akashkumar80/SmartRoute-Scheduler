@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SmartRoute-Scheduler</title>
   <link rel="stylesheet" href="style.css" />
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intro.js/minified/introjs.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/intro.js/minified/intro.min.js"></script>
+
+
   <style>
 body.dark-mode {
   background: #121212 !important;
@@ -168,9 +174,9 @@ body.dark-mode .loading {
   <div id="navbar"></div>
 
   <div class="container">
-    <h1>SmartRoute Scheduler</h1>
+    <h1  data-intro="Welcome to SmartRoute Scheduler!" data-step="6">SmartRoute Scheduler</h1>
 
-    <form id="commute-form">
+    <form id="commute-form" data-intro="Here you can schedule your daily or weekly commute." data-step="7">
   <label>From:
     <input type="text" id="source" placeholder="Enter source location" required />
   </label>
@@ -188,27 +194,31 @@ body.dark-mode .loading {
   </label>
 
   <label>SMS Frequency:
-    <select id="smsFrequency" required>
+    <select id="smsFrequency" data-intro="Choose how often you want SMS reminders: once, daily, or weekly." data-step="8" required>
       <option value="once">Just Once</option>
       <option value="daily">Daily</option>
       <option value="weekly">Weekly</option>
     </select>
   </label>
 
-  <button type="submit">🚗 Schedule Commute</button>
+  <button type="submit" data-intro="Submit Data To add Data In Scheduler" data-step="9">🚗 Schedule Commute</button>
 </form>
 
 
     <div id="response"></div>
 
     <div class="actions">
-      <a href="dashboard.html"><button type="button">📅 View Calendar</button></a>
-      <button onclick="logout()">🚪 Logout</button>
+      <a href="dashboard.html" data-intro="Visit your dashboard to view or manage your scheduled commutes." data-step="10"><button type="button">📅 View Calendar</button></a>
+      <button onclick="logout()"  data-intro="Logout securely from your account." data-step="11">🚪 Logout</button>
     </div>
   </div>
 
   <script src="script.js"></script>
   <script>
+     function startTour() {
+    introJs().start();
+  }
+
   // Load the navbar from nav.html
   fetch("nav.html")
     .then((res) => res.text())
@@ -229,6 +239,37 @@ body.dark-mode .loading {
           document.body.classList.toggle("dark-mode", this.checked);
           localStorage.setItem("darkMode", this.checked);
         });
+      }
+
+      const currentPage = window.location.pathname.split("/").pop();
+      if (currentPage === "" || currentPage === "index.html") {
+        // Apply intro attributes dynamically
+        const navLinks = document.querySelectorAll('.nav-left a');
+        if (navLinks.length > 0) {
+          navLinks[0].setAttribute("data-intro", "This is your homepage 🏠");
+          navLinks[0].setAttribute("data-step", "1");
+
+          navLinks[1].setAttribute("data-intro", "Check your commute dashboard 📅");
+          navLinks[1].setAttribute("data-step", "2");
+        }
+
+        const googleTranslator = document.querySelector('.google_translator');
+        if (googleTranslator) {
+          googleTranslator.setAttribute("data-intro", "Language Translator");
+          googleTranslator.setAttribute("data-step", "3");
+        }
+
+        const toggleWrapper = document.querySelector('.dark-toggle');
+        if (toggleWrapper) {
+          toggleWrapper.setAttribute("data-intro", "Toggle between light and dark mode 🌗");
+          toggleWrapper.setAttribute("data-step", "4");
+        }
+
+        const logoutBtn = document.querySelector('.logout-btn');
+        if (logoutBtn) {
+          logoutBtn.setAttribute("data-intro", "Click here to logout");
+          logoutBtn.setAttribute("data-step", "5");
+        }
       }
     });
 </script>

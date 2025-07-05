@@ -4,6 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup - SmartRoute Scheduler</title>
   <link rel="stylesheet" href="auth.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intro.js/minified/introjs.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/intro.js/minified/intro.min.js"></script>
+
   <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
@@ -12,6 +16,9 @@
       layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
     }, 'google_translate_element');
   }
+  function startTour() {
+    introJs().start();
+  }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
@@ -19,15 +26,15 @@
 <body>
   <div id="navbar"></div>
 
-  <div class="auth-container">
-    <form id="signupForm">
+  <div class="auth-container" data-intro="Signup Page" data-step="1">
+    <form id="signupForm" data-intro="Enter your details like full name, email id, phone number for sending SMS purpose, and a secure password" data-step="2">
       <h2>Sign Up</h2>
       <input type="text" id="name" placeholder="Full Name" required />
       <input type="email" id="email" placeholder="Email" required />
       <input type="tel" id="phone" placeholder="Phone Number" required />
       <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Sign Up</button>
-      <p>Already have an account? <a href="login.html">Login</a></p>
+      <button type="submit" data-intro="Click signup button after fillig all details" data-step="3">Sign Up</button>
+      <p>Already have an account? <a href="login.html" data-intro="If Already Have a account then click on login button." data-step="4">Login</a></p>
       <div id="signupMessage"></div>
     </form>
   </div>

@@ -5,7 +5,9 @@
     <a href="dashboard.html">📅 Dashboard</a>
   </div>
   <div class="nav-right">
-    <div id="google_translate_element"></div>
+    <div class="google_translator" id="google_translate_element"></div>
+    <button onclick="startTour()" class="tour-btn">🎓 Guide Me</button>
+
     <div class="dark-toggle">
       <label class="switch">
         <input type="checkbox" id="darkModeToggle">
@@ -17,6 +19,16 @@
 </nav>
 
 <style>
+    .tour-btn {
+  background-color: #8e44ad;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
   #google_translate_element {
     margin-right: 10px;
     font-size: 0.9rem;

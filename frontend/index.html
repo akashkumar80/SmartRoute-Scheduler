@@ -6,6 +6,43 @@
   <title>SmartRoute-Scheduler</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+body.dark-mode {
+  background: #121212 !important;
+  color: #f0f0f0;
+}
+
+body.dark-mode .auth-container {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode input {
+  background-color: #2b2b2b;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+body.dark-mode input::placeholder {
+  color: #aaa;
+}
+
+body.dark-mode button {
+  background: #4da3ff;
+}
+
+body.dark-mode button:hover {
+  background: #3399ff;
+}
+
+body.dark-mode p {
+  color: #ddd;
+}
+
+body.dark-mode a {
+  color: #4da8ff;
+}
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #74ebd5, #acb6e5);
@@ -55,7 +92,6 @@
     }
 
     button {
-      margin-top: 1rem;
       padding: 0.75rem;
       background-color: #3498db;
       color: white;
@@ -104,6 +140,8 @@
   </style>
 </head>
 <body>
+  <div id="navbar"></div>
+
   <div class="container">
     <h1>SmartRoute Scheduler</h1>
 
@@ -145,5 +183,30 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+  // Load the navbar from nav.html
+  fetch("nav.html")
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("navbar").innerHTML = html;
+
+      // Attach dark mode logic after navbar loads
+      const toggle = document.getElementById("darkModeToggle");
+      const isDark = localStorage.getItem("darkMode") === "true";
+
+      if (isDark) {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.checked = true;
+      }
+
+      if (toggle) {
+        toggle.addEventListener("change", function () {
+          document.body.classList.toggle("dark-mode", this.checked);
+          localStorage.setItem("darkMode", this.checked);
+        });
+      }
+    });
+</script>
+
 </body>
 </html>

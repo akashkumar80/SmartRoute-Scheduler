@@ -1,62 +1,110 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f8fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  transition: background 0.3s ease;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f8fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+.auth-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 300px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-  .auth-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    width: 300px;
-  }
+form h2 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
 
-  form h2 {
-    margin-bottom: 1rem;
-    color: #2c3e50;
-  }
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  color: #2c3e50;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-  input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
+button {
+  width: 100%;
+  padding: 0.7rem;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
 
-  button {
-    width: 100%;
-    padding: 0.7rem;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-  }
+button:hover {
+  background: #2980b9;
+}
 
-  button:hover {
-    background: #2980b9;
-  }
+p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
 
-  p {
-    text-align: center;
-    font-size: 0.9rem;
-  }
+a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
-  a {
-    color: #3498db;
-    text-decoration: none;
-  }
+#loginMessage,
+#signupMessage {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: red;
+}
 
-  #loginMessage, #signupMessage {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: red;
-  }
+
+body.dark-mode {
+  background: #121212 !important;
+  color: #f0f0f0;
+}
+
+body.dark-mode .auth-container {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode input {
+  background-color: #2b2b2b;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+body.dark-mode input::placeholder {
+  color: #aaa;
+}
+
+body.dark-mode button {
+  background: #4da3ff;
+}
+
+body.dark-mode button:hover {
+  background: #3399ff;
+}
+
+body.dark-mode p {
+  color: #ddd;
+}
+
+body.dark-mode a {
+  color: #4da8ff;
+}

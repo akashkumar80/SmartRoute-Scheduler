@@ -5,6 +5,46 @@
   <title>Dashboard - SmartRoute Scheduler</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+
+  /* Apply dark background and text globally */
+body.dark-mode {
+  background: #121212 !important;
+  color: #f0f0f0;
+}
+
+body.dark-mode .auth-container {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode input {
+  background-color: #2b2b2b;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+body.dark-mode input::placeholder {
+  color: #aaa;
+}
+
+body.dark-mode button {
+  background: #4da3ff;
+}
+
+body.dark-mode button:hover {
+  background: #3399ff;
+}
+
+body.dark-mode p {
+  color: #ddd;
+}
+
+body.dark-mode a {
+  color: #4da8ff;
+}
+
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #74ebd5, #acb6e5);
@@ -23,6 +63,7 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       width: 90%;
       max-width: 600px;
+      margin-top: 70px;
     }
 
     h1 {
@@ -126,12 +167,14 @@
   </style>
 </head>
 <body>
+  <div id="navbar"></div>
+
   <div class="container">
     <h1>🚦 Your Scheduled Commutes</h1>
     <div id="commute-list">Loading...</div>
 
     <div class="nav-buttons">
-      <a href="index.html"><button>➕ New Commute</button></a>
+      <a href="index.html"><button  type="button" onclick="clearEditAndGo()">➕ New Commute</button></a>
       <button onclick="logout()" class="logout-btn">🚪 Logout</button>
     </div>
   </div>
@@ -201,7 +244,37 @@
       window.location.href = "index.html";
     }
 
+    function clearEditAndGo() {
+      localStorage.removeItem("edit_schedule_id");
+      window.location.href = "index.html";
+    }
+
     loadSchedules();
   </script>
+  <script>
+  // Load the navbar from nav.html
+  fetch("nav.html")
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("navbar").innerHTML = html;
+
+      // Attach dark mode logic after navbar loads
+      const toggle = document.getElementById("darkModeToggle");
+      const isDark = localStorage.getItem("darkMode") === "true";
+
+      if (isDark) {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.checked = true;
+      }
+
+      if (toggle) {
+        toggle.addEventListener("change", function () {
+          document.body.classList.toggle("dark-mode", this.checked);
+          localStorage.setItem("darkMode", this.checked);
+        });
+      }
+    });
+</script>
+
 </body>
 </html>

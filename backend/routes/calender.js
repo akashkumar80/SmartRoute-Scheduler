@@ -12,11 +12,10 @@ router.get("/auth/cronofy", (req, res) => {
 router.get("/cronofy/callback", async (req, res) => {
   const { code } = req.query;
   const tokenData = await getTokenFromCode(code);
-  userAccessToken = tokenData.access_token; // Save securely in DB later
-  res.send("✅ Cronofy Calendar connected!");
+  userAccessToken = tokenData.access_token;
+  res.send("Cronofy Calendar connected!");
 });
 
-// Step 3: Add event to calendar
 router.post("/calendar/cronofy/add",requireAuth, async (req, res) => {
   try {
     const { summary, description, start, end, calendar_id } = req.body;

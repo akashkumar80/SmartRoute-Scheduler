@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - SmartRoute Scheduler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 90%;
+      max-width: 600px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #2c3e50;
+    }
+
+    #commute-list {
+      margin-bottom: 1.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f9f9f9;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    li b {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    button {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .edit-btn {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .nav-buttons a button,
+    .nav-buttons button {
+      flex: 1;
+      padding: 0.6rem;
+      font-size: 1rem;
+      margin: 0 0.3rem;
+      border-radius: 8px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .logout-btn {
+      background-color: #e67e22;
+    }
+
+    @media screen and (max-width: 480px) {
+      .nav-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .buttons {
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚦 Your Scheduled Commutes</h1>
+    <div id="commute-list">Loading...</div>
+
+    <div class="nav-buttons">
+      <a href="index.html"><button>➕ New Commute</button></a>
+      <button onclick="logout()" class="logout-btn">🚪 Logout</button>
+    </div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) window.location.href = "login.html";
+
+    const logout = () => {
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    };
+
+    async function loadSchedules() {
+      const listDiv = document.getElementById("commute-list");
+
+      try {
+        const res = await fetch("/api/schedule", {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          listDiv.innerHTML = "❌ Error loading commutes.";
+          return;
+        }
+
+        if (data.length === 0) {
+          listDiv.innerHTML = "<p>No schedules found.</p>";
+          return;
+        }
+
+        listDiv.innerHTML = "<ul>" + data.map(s => `
+            <li>
+                <div>
+                <b>${s.source}</b> ➡️ <b>${s.destination}</b><br/>
+                🗓️ ${s.arrivalDate} &nbsp;&nbsp; 🕒 ${s.arrivalTime}<br/>
+                🔁 Frequency: <i>${s.smsFrequency.charAt(0).toUpperCase() + s.smsFrequency.slice(1)}</i>
+                </div>
+                <div class="buttons">
+                <button class="edit-btn" onclick="editSchedule('${s._id}')">✏️ Edit</button>
+                <button class="delete-btn" onclick="deleteSchedule('${s._id}')">🗑️ Delete</button>
+                </div>
+            </li>
+            `).join("") + "</ul>";
+
+
+      } catch (err) {
+        listDiv.innerHTML = "❌ Server error.";
+      }
+    }
+
+    async function deleteSchedule(id) {
+      if (!confirm("Delete this schedule?")) return;
+
+      const res = await fetch(`/api/schedule/${id}`, {
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+
+      if (res.ok) loadSchedules();
+      else alert("Failed to delete.");
+    }
+
+    function editSchedule(id) {
+      localStorage.setItem("edit_schedule_id", id);
+      window.location.href = "index.html";
+    }
+
+    loadSchedules();
+  </script>
+</body>
+</html>

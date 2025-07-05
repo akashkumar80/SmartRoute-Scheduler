@@ -41,7 +41,14 @@ document.getElementById('commute-form').addEventListener('submit', async (e) => 
   const arrivalDate = document.getElementById('arrivalDate').value;
   const smsFrequency = document.getElementById('smsFrequency').value;
 
-  responseDiv.textContent = '⏳ Scheduling...';
+  // responseDiv.textContent = '⏳ Scheduling...';
+  responseDiv.innerHTML = `
+  <div class="loading">
+    <img src="assets/search.gif" alt="Loading..." width="60">
+    <p id="fun-fact">🚦 Scheduling your smart commute...</p>
+  </div>
+`;
+
 
   try {
     let url = '/api/schedule/add';

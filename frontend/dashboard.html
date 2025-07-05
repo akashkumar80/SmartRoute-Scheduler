@@ -43,6 +43,19 @@ body.dark-mode p {
 body.dark-mode a {
   color: #4da8ff;
 }
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 2rem;
+}
+
+body.dark-mode .loading {
+  color: #f0f0f0;
+}
 
 
     body {
@@ -171,7 +184,12 @@ body.dark-mode a {
 
   <div class="container">
     <h1>🚦 Your Scheduled Commutes</h1>
-    <div id="commute-list">Loading...</div>
+    <div id="commute-list">
+      <div class="loading">
+        <img src="assets/search.gif" alt="Loading..." width="80">
+        <p id="fun-fact">Fetching your routes... 🚦</p>
+      </div>
+    </div>
 
     <div class="nav-buttons">
       <a href="index.html"><button  type="button" onclick="clearEditAndGo()">➕ New Commute</button></a>

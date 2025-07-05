@@ -13,7 +13,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const data = await res.json();
     if (res.ok) {
       localStorage.setItem("token", data.token);
-      window.location.href = "index.html"; // redirect on success
+      window.location.href = "index.html";
     } else {
       message.textContent = data.message;
     }

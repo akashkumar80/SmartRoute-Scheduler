@@ -61,6 +61,19 @@ body.dark-mode a {
 body.dark-mode .loading {
   color: #f0f0f0;
 }
+button.tts-button {
+  background-color: #8e44ad;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+button.tts-button:hover {
+  background-color: #732d91;
+}
 
 
 
@@ -193,6 +206,15 @@ body.dark-mode .loading {
     }, 'google_translate_element');
   }
 
+  function speak(text) {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+    } else {
+      alert("Sorry, your browser does not support text-to-speech.");
+    }
+  }
+
   function startTour() {
     introJs().start();
   }
@@ -204,6 +226,7 @@ body.dark-mode .loading {
   <div id="navbar"></div>
 
   <div class="container">
+    <button onclick="readInstructions()" class="tts-button">🔊 Speak Instructions</button>
     <h1 data-intro="You Can View Your All Schedules Here and Edit Them" data-step="1">🚦 Your Scheduled Commutes</h1>
     <div id="commute-list">
       <div class="loading">
@@ -226,6 +249,40 @@ body.dark-mode .loading {
       localStorage.removeItem("token");
       window.location.href = "login.html";
     };
+
+    let currentUtterance = null;
+
+function readInstructions() {
+  if (!('speechSynthesis' in window)) {
+    alert("Sorry, your browser does not support Text-to-Speech.");
+    return;
+  }
+
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    currentUtterance = null;
+    return;
+  }
+
+  const elements = document.querySelectorAll('[data-intro]');
+  const instructions = Array.from(elements)
+    .sort((a, b) => {
+      return (parseInt(a.dataset.step) || 0) - (parseInt(b.dataset.step) || 0);
+    })
+    .map(el => el.dataset.intro);
+
+  const text = instructions.join('. ');
+
+  currentUtterance = new SpeechSynthesisUtterance(text);
+  currentUtterance.rate = 1;
+  currentUtterance.lang = 'en-US';
+
+  speechSynthesis.speak(currentUtterance);
+}
+
+window.addEventListener('beforeunload', () => {
+  speechSynthesis.cancel();
+});
 
     async function loadSchedules() {
       const listDiv = document.getElementById("commute-list");

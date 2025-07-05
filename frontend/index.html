@@ -62,6 +62,24 @@ body.dark-mode .loading {
   color: #f0f0f0;
 }
 
+.tts-button {
+  margin: 1rem auto;
+  display: block;
+  background-color: #34495e;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tts-button:hover {
+  background-color: #2c3e50;
+}
+
+
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -159,6 +177,39 @@ body.dark-mode .loading {
     }
   </style>
   <script type="text/javascript">
+
+    let currentUtterance = null;
+
+  function speakIntro() {
+    // If already speaking, stop it
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+      currentUtterance = null;
+      return;
+    }
+
+    const message = `
+      Welcome to SmartRoute Scheduler!
+      You can schedule your daily or weekly commute here.
+      Start by entering the source and destination.
+      Select your preferred arrival date and time.
+      Choose how often you want SMS reminders: just once, daily, or weekly.
+      Finally, click on Schedule Commute to save your commute.
+      You can view all your schedules by clicking on View Calendar.
+      And don’t forget to logout once done.
+    `;
+
+    currentUtterance = new SpeechSynthesisUtterance(message);
+    currentUtterance.lang = 'en-US';
+    currentUtterance.rate = 1;
+
+    speechSynthesis.speak(currentUtterance);
+  }
+
+  // Stop speech when user leaves or reloads the page
+  window.addEventListener("beforeunload", () => {
+    speechSynthesis.cancel();
+  });
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'en',
@@ -174,6 +225,8 @@ body.dark-mode .loading {
   <div id="navbar"></div>
 
   <div class="container">
+    <button onclick="speakIntro()" class="tts-button">🔊 Speak Instructions</button>
+
     <h1  data-intro="Welcome to SmartRoute Scheduler!" data-step="6">SmartRoute Scheduler</h1>
 
     <form id="commute-form" data-intro="Here you can schedule your daily or weekly commute." data-step="7">
